@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Making Government a Little More",
     "section": "",
-    "text": "---"
+    "text": "---\n\n# Define the initial product\nproduct <- c(\"Feature A\", \"Feature B\")\n\n# Define a function to simulate user feedback on the product\nget_user_feedback <- function(product) {\n  feedback <- sample(c(\"Positive\", \"Neutral\", \"Negative\"), 1)\n  print(paste(\"Received feedback:\", feedback))\n  return(feedback)\n}\n\n# Define a function to add a new feature to the product based on user feedback\nadd_feature <- function(product, feedback) {\n  if(feedback == \"Positive\") {\n    new_feature <- sample(c(\"Feature C\", \"Feature D\", \"Feature E\"), 1)\n    product <- c(product, new_feature)\n    print(paste(\"Added new feature:\", new_feature))\n  }\n  return(product)\n}\n\n# Iterate and improve the product based on user feedback\nfeedback <- \"Positive\"\nwhile(feedback != \"Negative\") {\n  feedback <- get_user_feedback(product)\n  product <- add_feature(product, feedback)\n}\n\n[1] \"Received feedback: Neutral\"\n[1] \"Received feedback: Positive\"\n[1] \"Added new feature: Feature D\"\n[1] \"Received feedback: Neutral\"\n[1] \"Received feedback: Negative\"\n\n# Output a message indicating that the product is ready to launch\nprint(\"Product ready to launch!\")\n\n[1] \"Product ready to launch!\""
   },
   {
     "objectID": "about.html",
