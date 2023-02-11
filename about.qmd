@@ -1,0 +1,9 @@
+---
+title: "About"
+---
+
+I am a Ph.D. student in Public Affairs at the University of Texas at Dallas. My dissertation research involves the use of the Agile mindset in municipal government operations.
+
+```{r}
+
+```
