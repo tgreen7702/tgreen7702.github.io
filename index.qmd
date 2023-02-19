@@ -2,6 +2,8 @@
 title: "Making Government a Little More"
 ---
 
+\-\--
+
 ![](agile.png) \-\--
 
 \-\--
@@ -12,4 +14,8 @@ title: "Making Government a Little More"
 
 **Labs**
 
-1.  [Lab 1](Lab01.html)
+1.  [Lab 1](/Lab01.html)
+    -   [Lab 1 Figure](Figure01.pdf)
+2.  [Lab 2](Lab02.html)
+    1.  [Lab 2 Figures](Lab02_files)
+3.  Lab 3 

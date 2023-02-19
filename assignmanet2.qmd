@@ -1,0 +1,20 @@
+---
+title: "Assignment 2"
+"Travis Green"
+---
+
+**What problems do you encounter when dealing with the dataset?**
+
+There are no values for Tondu around the category of 7.5. Tondu referes to an attitude toward unification with mainland China.
+
+**How to deal with missing values?**
+
+We can drop observations with missing values or we can try to impute them (example: average imputation or common point imputation).
+
+**Explore the relationship between Tondu and other variables including female, DPP, age, income, edu, Taiwanese and Econ_worse. What methods would you use?**
+
+For numerical variables such as age, income and years of education, we can correlate them with Tondu or use scatterplots and a linear regression modeling. For categorical variables such as gender, DPP and Taiwanese in relationship to Tondu, we can use a bar plot.
+
+**How about the votetsai variable (vote for DPP candidate Tsai Ing-wen)?**
+
+Since votetsai is dychotomous, we can assume it to be a dependent variable, we can then use logit to analyze the effect of Tondu on whether a voter votes for Tsai Ing-wen or not.

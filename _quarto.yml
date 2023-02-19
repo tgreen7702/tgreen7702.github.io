@@ -9,20 +9,20 @@ website:
          text: Home
        - href: about.qmd
          text: About
-       - href: research.qmd
+       - href: research.html
          text: Research
-       - href: project.qmd
+       - href: project.html
          text: Project
        - href: CV.pdf
          text: CV
        - text: Assignments
          menu:
           - href: assignment1.html
-            text: assignment1
-          - href: assignment2.qmd
-            text: assignment2
-          - href: assignment3.qmd
-            text: assignment3
+            text: Assignment1
+          - href: assignment02.html
+            text: Assignment2
+          - href: assignment03.html
+            text: Assignment3
        
 format: 
   html:
