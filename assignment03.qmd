@@ -1,0 +1,73 @@
+---
+title: "assignment03"
+author: "Travis Green"
+---
+
+## Access TEDS2016 dataset by importing 
+
+```{r}
+library("haven")
+TEDS_2016<-read_dta("https://github.com/datageneration/home/blob/master/DataProgramming/data/TEDS_2016.dta?raw=true")
+```
+
+## Select only relevant variables to create a subset of the dataset (Tondu, female, DPP, age, income, edu, Taiwanes eand Econ_worse).
+
+```{r}
+TEDS_2016_subset <- subset(TEDS_2016, select = c("Tondu","female","DPP","age","income","edu","Taiwanese","Econ_worse"))
+```
+
+## Make sure the dependent variable Tondu is coded with right labels
+
+```{r}
+TEDS_2016_subset$Tondu<-as.numeric(TEDS_2016_subset$Tondu,labels=c("Unification now", "Status quo, unif. in future", "Status quo, decide later", "Status quo forever", "Status quo, indep. in future", "Independence now", "No response"))
+```
+
+## Multiple regression analysis
+
+## Tondu refers to an attitude toward unification with mainland China.
+
+```{r}
+model1=lm(Tondu ~ age + income + edu,data=TEDS_2016_subset)
+summary(model1)
+```
+
+## Regplot
+
+```{r}
+(regplot= plot(lm(Tondu ~ age + income + edu, data = TEDS_2016_subset)))
+```
+
+## What is the problem? Why? (hint: how many categories in the DV?)
+
+#### The problem is that the DV is not numerical but instead consisting of different categories. Linear regression analysis is not a suitable model in this case.
+
+## What can be done to improve prediction of the dependent variable?
+
+#### We can try nominal logistic regression or multinomial logistic regression. This may be suitable because our DV consists of categories that are not ordered in any specific way.
+
+## Steps to run a multinomial regression analysis: https://stats.oarc.ucla.edu/r/dae/multinomial-logistic-regression/
+
+## First, we need to choose the level of our outcome that we wish to use as our baseline and specify this in the relevel function.
+
+## To do so, reorganize the DV as unordered factors (and before that, define a new subset to use with this newly defined DV).
+
+```{r}
+TEDS_2016_subset1 <- subset(TEDS_2016, select = c("Tondu","female","DPP","age","income","edu","Taiwanese","Econ_worse"))
+TEDS_2016_subset1$Tondu<-factor(TEDS_2016_subset$Tondu,labels=c("Unification now", "Status quo, unif. in future", "Status quo, decide later", "Status quo forever", "Status quo, indep. in future", "Independence now", "No response"))
+TEDS_2016_subset1$Tondu1 <- relevel(factor(TEDS_2016_subset1$Tondu), ref = "Status quo forever")
+```
+
+## Then we run our model using multinom
+
+```{r}
+library(nnet)
+model2 <- multinom(Tondu1 ~ age + income +edu, data = TEDS_2016_subset1)
+summary(model2)
+```
+
+## The multinom package does not include p-value calculation for the regression coefficients, so we calculate p-values using a z-test.
+
+```{r}
+z <- summary(model2)$coefficients/summary(model2)$standard.errors
+ p <- (1 - pnorm(abs(z), 0, 1)) * 2
+```
