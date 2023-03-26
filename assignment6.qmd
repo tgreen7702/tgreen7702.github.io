@@ -1,0 +1,64 @@
+---
+title: "Regression with TEDS2016"
+author: "Travis Green"
+date: "3/26/2023"
+output: html_document
+---
+---
+
+#### Use the TEDS2016 dataset to run a logit (logistic regression) model using female as sole predictor. The dependent variable is the vote (1-0) for Tsai Ing-wen, the female candidate for the then opposition party Democratic Progressive Party (DPP). Access the data set using the following codes:
+```{r}
+library(haven)
+TEDS_2016<-read_stata("https://github.com/datageneration/home/blob/master/DataProgramming/data/TEDS_2016.dta?raw=true")
+```
+
+#### Check the dataset
+```{r}
+names(TEDS_2016)
+```
+
+#### Logistic regression
+```{r}
+ teds.fit=glm(votetsai~female, data=TEDS_2016,family=binomial)
+summary(teds.fit)
+```
+
+
+#### Female voters are not more likely to vote for President Tsai becasue the coefficient for "female" (-0.06) is negative and it is not statistically significant.
+
+#### Improve the model by adding party ID variables (KMT, DPP) and other demographic variables (age, edu, income)
+```{r}
+teds.fit2=glm(votetsai~female+KMT+DPP+Age+edu+income,
+                data=TEDS_2016,family=binomial)
+summary(teds.fit2)
+```
+
+#### I find that "female" is now positively correlated with the DV, although the variable is still not statistically significant. "KMT", "DPP", "Age" and "edu" are all statistically significant. It appears that KMT party followers are less likely to vote for Tsai Ing-wen, whereas DPP party members are more likely to do so. Age and education are negatively related to the DV, implying that those that are younger and less educated are more likely to vote for Tsai Ing-wen.
+
+
+#### Add more variables to further improve the model
+```{r}
+teds.fit3=glm(votetsai~female+KMT+DPP+Age+edu+income+Independence+Econ_worse+Govt_dont_care+Minnan_father+Mainland_father+Taiwanese,
+                 data=TEDS_2016,family=binomial)
+summary(teds.fit3)
+```
+
+
+#### With the addition of new variables, age and education become statistically insignificant. The other two variables (KMT and DPP) hold in significance. Additionally, "Independence," "Mainland_father" and "Econ_worse" also become statistically significant.
+
+---
+# Logistic regression in STATA
+
+#### Load the dataset
+use  "https://github.com/datageneration/home/blob/master/DataProgramming/data/TEDS_2016.dta?raw=true"
+
+#### Logistic regression
+logit votetsai Independence Econ_worse Govt_dont_care Minnan_father Mainland_father Taiwanese KMT DPP age edu female
+
+#### Output
+![](https://dashadjukic-min.github.io/image004.png)
+
+#### The difference between the R and Stata models is that the R logit model includes "income" while the Stata-based model does not. However, the two models' results are quite similar (the same variables are significant in both models and in the same direction).
+---
+
+## 
