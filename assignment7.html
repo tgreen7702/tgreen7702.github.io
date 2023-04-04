@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Assignment 7</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="assignment7_files/libs/clipboard/clipboard.min.js"></script>
+<script src="assignment7_files/libs/quarto-html/quarto.js"></script>
+<script src="assignment7_files/libs/quarto-html/popper.min.js"></script>
+<script src="assignment7_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="assignment7_files/libs/quarto-html/anchor.min.js"></script>
+<link href="assignment7_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="assignment7_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="assignment7_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="assignment7_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="assignment7_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Assignment 7</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
+<section id="travis-green" class="level4">
+<h4 class="anchored" data-anchor-id="travis-green"><strong>Travis Green</strong></h4>
+</section>
+<section id="section-1" class="level4">
+<h4 class="anchored" data-anchor-id="section-1"><strong>5/2/2023</strong></h4>
+</section>
+<section id="what-is-lda" class="level4">
+<h4 class="anchored" data-anchor-id="what-is-lda"><strong>1. What is LDA</strong></h4>
+<ul>
+<li>LDA reduces dimensions and it focuses on maximizing the separability among the categories so we can make the best decision.</li>
+</ul>
+</section>
+<section id="a.-what-isare-the-requirementsof-lda" class="level4">
+<h4 class="anchored" data-anchor-id="a.-what-isare-the-requirementsof-lda"><strong>2a. What is/are the requirement(s)of LDA?</strong></h4>
+<ul>
+<li><p>Once the data is projected onto a new axis, we want to:</p>
+<ul>
+<li><div>
+<ol type="1">
+<li>Maximize the distance between the two means.</li>
+</ol>
+</div></li>
+<li><div>
+<ol start="2" type="1">
+<li>Minimize the variation (which LDA calls scatter) within each category.</li>
+</ol>
+</div></li>
+</ul></li>
+</ul>
+</section>
+<section id="b.-how-lda-is-different-from-logistic-regression" class="level4">
+<h4 class="anchored" data-anchor-id="b.-how-lda-is-different-from-logistic-regression"><strong>2b. How LDA is different from Logistic Regression?</strong></h4>
+<ul>
+<li><p>LDA works best when predicted and predictor variables are continuous (not categorical) and follow a normal distribution. In logistic regression, a predictor is a binary variable and it works well with categorical variables as predictors.</p></li>
+<li><p>LDA uses least square estimation while logistic regression relies on maximum likelihood estimation.</p></li>
+</ul>
+<p><strong>2c. What is ROC?</strong></p>
+<ul>
+<li>The ROC curve, receiver operating characteristic curve, is a graph showing the performance of a classification model at all classification thresholds. This curve plots two parameters: true positive rate and false positive rate. An ideal ROC curve hugs the upper left corner, so the larger the area under the curve the better the classifier.</li>
+</ul>
+</section>
+<section id="d.-what-is-sensitivity-and-specificity-which-is-more-important-in-your-opinion" class="level4">
+<h4 class="anchored" data-anchor-id="d.-what-is-sensitivity-and-specificity-which-is-more-important-in-your-opinion"><strong>2d. What is sensitivity and specificity? Which is more important in your opinion?</strong></h4>
+<ul>
+<li><p>Sensitivity measures the proportion of actual positives which are correctly identified (e.g.&nbsp;the percentage of sick people who are correctly identified as having the condition), and is complementary to the false negative rate.</p></li>
+<li><p>Sensitivity and specificity are statistical measures of the performance of a classification test or screening test, which is often used in medicine.</p></li>
+<li><p>Specificity measures the proportion of negatives which are correctly identified (e.g.&nbsp;the percentage of healthy people who are correctly identified as not having the condition), and is complementary to the false positive rate.</p>
+<p><strong><em>Sensitivity is more important because it is complementary to false negative .</em></strong></p></li>
+</ul>
+</section>
+<section id="e.-from-the-following-chart-for-the-purpose-of-prediction-which-is-more-critical" class="level4">
+<h4 class="anchored" data-anchor-id="e.-from-the-following-chart-for-the-purpose-of-prediction-which-is-more-critical"><strong>2e. From the following chart, for the purpose of prediction, which is more critical?</strong></h4>
+<ul>
+<li>A false negative seems most critical. Also, false positive can have serious psychological consequences on a (healthy) person.</li>
+</ul>
+</section>
+<section id="calculate-the-prediction-error" class="level4">
+<h4 class="anchored" data-anchor-id="calculate-the-prediction-error"><strong>3. Calculate the prediction error</strong></h4>
+<ul>
+<li><p>23/9,667=0.2% false positives and 252/333=75.7% false negatives</p>
+<h4 id="section-2" class="anchored"></h4></li>
+</ul>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
